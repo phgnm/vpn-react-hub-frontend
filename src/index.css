@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* ===== Base Styles from vpn-react-hub ===== */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -18,9 +19,18 @@ body {
   min-height: 100vh;
 }
 
-/* ========== Cosmic star background ========== */
+/* ===== Theme variables from ex03 ===== */
+@theme {
+  --color-bg-deep: #020617;
+  --color-bg-sky: #0f172a;
+  --color-fg-light: #e2e8f0;
+
+  --font-sans: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* ===== Cosmic star background ===== */
 .cosmic-bg {
-  background: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
+  background: radial-gradient(circle at top, var(--color-bg-sky) 0%, var(--color-bg-deep) 100%);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -28,7 +38,7 @@ body {
   z-index: -10;
 }
 
-/* sao bay */
+/* ===== Shooting stars ===== */
 .star {
   position: absolute;
   width: 2px;
@@ -54,8 +64,50 @@ body {
   }
 }
 
+/* ===== Utility Components from ex03 ===== */
+@utility form-card {
+  @apply relative z-10 bg-gray-800/70 backdrop-blur-md border border-gray-700/50 
+         rounded-2xl p-8 shadow-2xl w-full max-w-md;
+}
 
-/* --- TIC-TAC-TOE LAYOUT --- */
+.form-card h1 {
+  @apply text-3xl font-bold mb-6 text-center bg-gradient-to-r 
+         from-indigo-400 to-fuchsia-400 bg-clip-text text-transparent;
+}
+
+@utility input-field {
+  @apply w-full mb-4 px-3 py-2 bg-gray-900/70 border border-gray-700 rounded-lg
+         focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-500 transition;
+}
+
+@utility btn-primary {
+  @apply py-2 px-6 mt-2 rounded-lg font-semibold text-white 
+         bg-gradient-to-r from-indigo-600 to-fuchsia-600
+         hover:from-indigo-500 hover:to-fuchsia-500 transition-all shadow-lg;
+}
+
+.btn-primary:active {
+  @apply scale-95;
+}
+
+@utility btn-secondary {
+  @apply py-2 px-6 mt-2 rounded-lg font-semibold text-white bg-gray-700 
+         hover:bg-gray-600 transition-all shadow-md;
+}
+
+.btn-secondary:active {
+  @apply scale-95;
+}
+
+@utility message-success {
+  @apply mt-4 text-center text-sm text-emerald-400;
+}
+
+@utility message-error {
+  @apply mt-4 text-center text-sm text-red-400;
+}
+
+/* ===== Tic Tac Toe section (unchanged) ===== */
 .tictactoe {
   background: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
   color: #e2e8f0;
@@ -67,7 +119,6 @@ body {
   padding: 2rem;
 }
 
-/* --- GAME BOARD --- */
 .tictactoe .square {
   background: #1e1e2e;
   border: 1px solid #2e2e40;
@@ -93,7 +144,6 @@ body {
   box-shadow: 0 0 8px #7c3aed55;
 }
 
-/* --- WINNING CELLS --- */
 .tictactoe .winning {
   background: linear-gradient(145deg, #a855f7, #06b6d4);
   color: #fff;
@@ -110,7 +160,6 @@ body {
   }
 }
 
-/* --- BUTTONS --- */
 .tictactoe button {
   background: linear-gradient(135deg, #4f46e5, #7c3aed);
   color: #fff;
@@ -135,7 +184,6 @@ body {
   box-shadow: 0 0 5px #7c3aed88;
 }
 
-/* --- MOVE HISTORY --- */
 .tictactoe ol {
   list-style: none;
   padding: 0;
@@ -161,7 +209,6 @@ body {
   box-shadow: 0 0 8px #7c3aed55;
 }
 
-/* --- CURRENT MOVE HIGHLIGHT --- */
 .tictactoe li:has(> span) {
   background: linear-gradient(135deg, #1e293b, #0f172a);
   border: 1px solid #7c3aed55;
@@ -172,7 +219,6 @@ body {
   box-shadow: 0 0 8px #7c3aed33;
 }
 
-/* --- STATUS TEXT --- */
 .tictactoe .status {
   font-size: 1.1rem;
   font-weight: 700;
@@ -180,7 +226,6 @@ body {
   color: #e0e7ff;
 }
 
-/* --- BOARD ALIGNMENT --- */
 .tictactoe .game {
   display: flex;
   gap: 2rem;
